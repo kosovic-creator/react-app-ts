@@ -28,7 +28,7 @@ const data = [
 function App() {
   const [ime, setIme] = useState(
     [{ naziv: 'marko', cijena: 30 }, { naziv: 'kosta', cijena: 30 }]);
-  const [godine, setGodine] = useState('');
+    const [godine, setGodine] = useState('88');
 
   const numIme = ime.length
   console.log(numIme)
@@ -40,6 +40,9 @@ function App() {
 
   return (
     <>
+    {/* {ime.map((item, index) => ( */}
+      <Children numIme={numIme} />
+      <Lift starost={godine} />
       {data.map((person) => (
         <div key={person.id}>
           <div className='flex justify-left items-center space-x-3'>
@@ -50,7 +53,7 @@ function App() {
 
         </div>
       ))}
-      <button className='bg-slate-400' onClick={() => setIme([{ naziv: 'Ana', cijena: 0 }])}>Set Ime</button>
+      <button className='bg-slate-400' onClick={() => setIme(ime=>[...ime,{ naziv: 'sofija', cijena: 88 }])}>Set Ime</button>
       {ime.map((item, index) => (
         <p key={index}>{item.naziv} - {item.cijena}</p>
       ))}
@@ -60,3 +63,28 @@ function App() {
 }
 
 export default App;
+
+
+interface ChildrenProps {
+  numIme: number;
+}
+
+function Children({ numIme }: ChildrenProps) {
+ const [godine, setGodine] = useState();
+  //  setGodine('66')
+  // console.log(godine)
+  return <div>{numIme}</div>
+
+}
+// interface LiftProps {
+//   brojGodina: string;
+// }
+
+interface LiftProps {
+  starost: string;
+}
+
+function Lift({ starost }: LiftProps) {
+  console.log(starost)
+  return <div>To je:  {starost}</div>;
+}
