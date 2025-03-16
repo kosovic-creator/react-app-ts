@@ -28,7 +28,7 @@ const data = [
 function App() {
   const [ime, setIme] = useState(
     [{ naziv: 'marko', cijena: 30 }, { naziv: 'kosta', cijena: 30 }]);
-    const [godine, setGodine] = useState('88');
+    const [item, setItem] = useState<any[]>([]);
 
   const numIme = ime.length
   console.log(numIme)
@@ -42,7 +42,7 @@ function App() {
     <>
     {/* {ime.map((item, index) => ( */}
       <Children numIme={numIme} />
-      <Lift starost={godine} />
+      <Lift  />
       {data.map((person) => (
         <div key={person.id}>
           <div className='flex justify-left items-center space-x-3'>
@@ -54,6 +54,11 @@ function App() {
         </div>
       ))}
       <button className='bg-slate-400' onClick={() => setIme(ime=>[...ime,{ naziv: 'sofija', cijena: 88 }])}>Set Ime</button>
+      <button className='bg-slate-400' onClick={() => setItem([...item, 'ana'])}>Set Items</button>
+      <p>{item}</p>
+
+
+
       {ime.map((item, index) => (
         <p key={index}>{item.naziv} - {item.cijena}</p>
       ))}
@@ -80,11 +85,7 @@ function Children({ numIme }: ChildrenProps) {
 //   brojGodina: string;
 // }
 
-interface LiftProps {
-  starost: string;
-}
 
-function Lift({ starost }: LiftProps) {
-  console.log(starost)
-  return <div>To je:  {starost}</div>;
+function Lift() {
+  return <div>Lift Component</div>;
 }

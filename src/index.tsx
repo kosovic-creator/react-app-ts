@@ -4,14 +4,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Roditelj } from './LiftingState/Roditelj';
+import ParentComponent from './LiftingState/ParentComponent';
+import Checkout from './LiftingUp/Checkout';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Roditelj />
+    <Checkout/>
   </React.StrictMode>
 );
 
