@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import './App.css';
@@ -31,12 +32,18 @@ function App() {
     const [item, setItem] = useState<any[]>([]);
 
   const numIme = ime.length
-  console.log(numIme)
+  // console.log(numIme)
   const sumGodine = ime.reduce((acc, cur) => acc + cur.cijena, 0);
 
   useEffect(() => {
-    console.log('useEffect Samo jednom');
+    console.log('Promjena imnema');
+    localStorage.setItem('ime', JSON.stringify(ime));
+  }, [{ime}]);
+  useEffect(() => {
+
+    localStorage.setItem('ime', JSON.stringify(ime));
   }, []);
+
 
   return (
     <>
@@ -53,8 +60,8 @@ function App() {
 
         </div>
       ))}
-      <button className='bg-slate-400' onClick={() => setIme(ime=>[...ime,{ naziv: 'sofija', cijena: 88 }])}>Set Ime</button>
-      <button className='bg-slate-400' onClick={() => setItem([...item, 'ana'])}>Set Items</button>
+      <button className='bg-slate-400' onClick={() => setIme(ime=>[...ime,{ naziv: 'sofija', cijena: 88 }])}>SetImeUseState</button>
+      <button className='bg-slate-400' onClick={() => setItem([...item, 'ana'])}>Set Ana array useEfect</button>
       <p>{item}</p>
 
 

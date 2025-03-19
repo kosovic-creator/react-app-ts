@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from '../Button';
+
 
 interface TotalProps {
     kupon: any;
@@ -6,7 +8,10 @@ interface TotalProps {
 
 const Total: React.FC<TotalProps> = ({ kupon }) => {
     return (
-        <div>Total: {kupon}</div>
+        <div>
+            <div>Total: {kupon}</div>
+            <Button text="Total" bgColor="blue" color='white' />
+        </div>
     )
 }
 

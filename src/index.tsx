@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ParentComponent from './LiftingState/ParentComponent';
 import Checkout from './LiftingUp/Checkout';
 
 
@@ -13,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Checkout/>
+    <App/>
   </React.StrictMode>
 );
 

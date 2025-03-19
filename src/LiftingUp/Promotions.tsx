@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
+import Button from '../Button';
+
 
 interface PromotionsProps {
     kupon: string;
@@ -7,9 +9,14 @@ interface PromotionsProps {
 }
 
 const Promotions: React.FC<PromotionsProps> = ({ kupon, setKupon }) => {
-setKupon('10');
+    setKupon('10');
     return (
-        <div>Promotions: {kupon}</div>
+        <>
+
+            <div>Promotions: {kupon}</div>
+            <Button text="Promotion" bgColor="red" color='white' />
+        </>
+
     )
 }
 
