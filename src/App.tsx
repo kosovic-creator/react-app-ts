@@ -27,46 +27,45 @@ const data = [
   },
 ];
 function App() {
-  const [ime, setIme] = useState(
+  const [profil, settProfil] = useState(
     [{ naziv: 'marko', cijena: 30 }, { naziv: 'kosta', cijena: 30 }]);
-    const [item, setItem] = useState<any[]>([]);
+  const [item, setItem] = useState<any[]>([]);
+  const [dozvola, setDozvola] = useState(false);
 
-  const numIme = ime.length
+  const numIme = profil.length
   // console.log(numIme)
-  const sumGodine = ime.reduce((acc, cur) => acc + cur.cijena, 0);
+  const sumGodine = profil.reduce((acc, cur) => acc + cur.cijena, 0);
 
   useEffect(() => {
     console.log('Promjena imnema');
-    localStorage.setItem('ime', JSON.stringify(ime));
-  }, [{ime}]);
+    localStorage.setItem('profil', JSON.stringify(profil));
+  }, [profil]);
   useEffect(() => {
-
-    localStorage.setItem('ime', JSON.stringify(ime));
+    localStorage.setItem('profil', JSON.stringify(profil));
+    localStorage.setItem('naziv', JSON.stringify('LokalStorage'));
+    const storage = localStorage.getItem('naziv');
+    alert(storage)
+    setDozvola(true);
   }, []);
-
-
   return (
     <>
-    {/* {ime.map((item, index) => ( */}
+      {/* {ime.map((item, index) => ( */}
       <Children numIme={numIme} />
-      <Lift  />
+      <Lift />
+      {dozvola && <h1>Dozvola</h1>}
       {data.map((person) => (
         <div key={person.id}>
           <div className='flex justify-left items-center space-x-3'>
             <h2 className='text-red-950 font-light text-2xl '>{person.name}</h2>
             <p>{person.age}</p>
           </div>
-
-
         </div>
       ))}
-      <button className='bg-slate-400' onClick={() => setIme(ime=>[...ime,{ naziv: 'sofija', cijena: 88 }])}>SetImeUseState</button>
+      <button className='bg-slate-400' onClick={() => settProfil(profil => [...profil, { naziv: 'sofija', cijena: 88 }])}>SetIProfilUseState</button>
       <button className='bg-slate-400' onClick={() => setItem([...item, 'ana'])}>Set Ana array useEfect</button>
       <p>{item}</p>
 
-
-
-      {ime.map((item, index) => (
+      {profil.map((item, index) => (
         <p key={index}>{item.naziv} - {item.cijena}</p>
       ))}
       <p className='text-red-800'>Ukupno godina:   {sumGodine}</p>
@@ -82,7 +81,7 @@ interface ChildrenProps {
 }
 
 function Children({ numIme }: ChildrenProps) {
- const [godine, setGodine] = useState();
+  const [godine, setGodine] = useState();
   //  setGodine('66')
   // console.log(godine)
   return <div>{numIme}</div>
