@@ -35,6 +35,20 @@ function App() {
   const numIme = profil.length
   // console.log(numIme)
   const sumGodine = profil.reduce((acc, cur) => acc + cur.cijena, 0);
+  interface PozdravCallback {
+    (): void;
+  }
+
+  function pozdrav(ime: string, callback: PozdravCallback): void {
+    console.log("Zdravo, " + ime);
+    setTimeout(callback, 7000);
+  }
+
+  function dovidjenja() {
+    console.log("Doviđenja!");
+  }
+
+  pozdrav("Petar", dovidjenja);
 
   useEffect(() => {
     console.log('Promjena imnema');
@@ -44,7 +58,8 @@ function App() {
     localStorage.setItem('profil', JSON.stringify(profil));
     localStorage.setItem('naziv', JSON.stringify('LokalStorage'));
     const storage = localStorage.getItem('naziv');
-    alert(storage)
+    // alert(storage)
+    dovidjenja()
     setDozvola(true);
   }, []);
   return (
@@ -64,7 +79,7 @@ function App() {
       <button className='bg-slate-400' onClick={() => settProfil(profil => [...profil, { naziv: 'sofija', cijena: 88 }])}>SetIProfilUseState</button>
       <button className='bg-slate-400' onClick={() => setItem([...item, 'ana'])}>Set Ana array useEfect</button>
       <p>{item}</p>
-
+      <button className='bg-slate-200' onClick={() => dovidjenja()}>Callback</button>
       {profil.map((item, index) => (
         <p key={index}>{item.naziv} - {item.cijena}</p>
       ))}
